@@ -28,7 +28,7 @@ jobs:
         shell: bash
         run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
       - name: Build image
-        run: docker build -t ga_codepipeline .
+        run: pwd ; ls ;docker build -t ga_codepipeline .
 
       - name: docker login
         run: aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS --password-stdin 014271515763.dkr.ecr.ap-northeast-2.amazonaws.com/ga_codepipeline
