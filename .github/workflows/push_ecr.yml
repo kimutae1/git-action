@@ -27,6 +27,11 @@ jobs:
         id: vars
         shell: bash
         run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+
+      - name: ls
+        shell: bash
+        run:  ls -rlt
+
       - name: Build image
         run: pwd ; ls ;docker build -t ga_codepipeline .
 
