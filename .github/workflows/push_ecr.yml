@@ -1,0 +1,42 @@
+name: Push Image to ECR
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  push-image:
+    runs-on: "ubuntu-20.04"
+    defaults:
+      run:
+        working-directory: ./
+    outputs:
+      commit_sha_short: ${{ steps.vars.outputs.sha_short }}
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_GITHUB_TEST_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_GITHUB_TEST_SECRET_ACCESS_KEY }}
+          aws-region: ap-northeast-2
+
+      - name: Declare variables
+        id: vars
+        shell: bash
+        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+      - name: Build image
+        run: docker build -t ga_codepipeline .
+
+      - name: docker login
+        run: aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS --password-stdin 014271515763.dkr.ecr.ap-northeast-2.amazonaws.com/ga_codepipeline
+
+      - name: tag image
+        run: |
+          docker tag ga_codepipeline:latest 982538867660.dkr.ecr.ap-northeast-2.amazonaws.com/ga_codepipeline:latest
+          docker tag ga_codepipeline:latest 982538867660.dkr.ecr.ap-northeast-2.amazonaws.com/ga_codepipeline:${{ steps.vars.outputs.sha_short }}
+
+      - name: push image
+        run: docker push 982538867660.dkr.ecr.ap-northeast-2.amazonaws.com/ga_codepipeline --all-tags
