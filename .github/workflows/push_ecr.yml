@@ -40,8 +40,8 @@ jobs:
 
       - name: tag image
         run: |
-          docker tag ga_codepipeline:latest 982538867660.dkr.ecr.ap-northeast-2.amazonaws.com/ga_codepipeline:latest
-          docker tag ga_codepipeline:latest 982538867660.dkr.ecr.ap-northeast-2.amazonaws.com/ga_codepipeline:${{ steps.vars.outputs.sha_short }}
+          docker tag ga_codepipeline:latest 014271515763.dkr.ecr.ap-northeast-2.amazonaws.com/ga_codepipeline:latest
+          docker tag ga_codepipeline:latest 014271515763.dkr.ecr.ap-northeast-2.amazonaws.com/ga_codepipeline:${{ steps.vars.outputs.sha_short }}
 
       - name: push image
-        run: docker push 982538867660.dkr.ecr.ap-northeast-2.amazonaws.com/ga_codepipeline --all-tags
+        run: docker push 014271515763.dkr.ecr.ap-northeast-2.amazonaws.com/ga_codepipeline --all-tags
