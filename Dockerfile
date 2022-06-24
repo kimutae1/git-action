@@ -1,4 +1,5 @@
 FROM nginx
+COPY index.html /usr/share/nginx/html/index.html
 #FROM python:3.8-slim
 #
 #COPY . /app
