@@ -1,0 +1,22 @@
+# https://docs.aws.amazon.com/ko_kr/codepipeline/latest/userguide/file-reference.html#pipelines-create-image-definitions
+
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.7
+  build:
+    commands:
+      - PHP_REPOSITORY_URI=$(cat imageDetail.json | python -c "import sys, json; print(json.load(sys.stdin)['ImageURI'].split('@')[0])")
+      - IMAGE_TAG1=$(cat imageDetail.json | python -c "import sys, json; print(json.load(sys.stdin)['ImageTags'][0])")
+      - IMAGE_TAG2=$(cat imageDetail.json | python -c "import sys, json; print(json.load(sys.stdin)['ImageTags'][1])")
+      - if [ "$IMAGE_TAG1" == "latest" ]; then IMAGE_TAG=$IMAGE_TAG2 ; fi
+      - if [ "$IMAGE_TAG2" == "latest" ]; then IMAGE_TAG=$IMAGE_TAG1 ; fi
+      - echo $PHP_REPOSITORY_URI:$IMAGE_TAG
+  post_build:
+    commands:
+      - echo Writing image definitions file...
+      - printf '[{"name":"%s","imageUri":"%s"}]' $APP_NAME $PHP_REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+artifacts:
+    files: imagedefinitions.json
