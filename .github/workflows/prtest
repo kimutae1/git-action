@@ -6,7 +6,7 @@ on:
     types: [opened, reopened]
     branches:
       # - app/*
-      - service/*
+      - master/*
 
 jobs:
   TestService:
