@@ -1,11 +1,10 @@
 # 서비스 브랜치에 PR을 보낼 경우 해당 서비스만 테스트를 실행한다.
 name: PR Test [Service]
 
+
 on:
-  pull_request:
-  #  types: [opened, reopened]
+  push:
     branches:
-      # - app/*
       - master
 
 jobs:
