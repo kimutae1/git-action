@@ -1,4 +1,10 @@
 #directory 
+ * [workflows](./workflows)
+     * [Dockerfile](./workflows/Dockerfile)
+     * [prtest.yml](./workflows/prtest.yml)
+     * [push_ecr.yml](./workflows/push_ecr.yml)
+
+
 
 ![CI_CD drawio](https://user-images.githubusercontent.com/71241225/197940501-a656cf6e-6ec2-471c-ba5a-f1df8ecd28f0.svg)
 
@@ -9,13 +15,4 @@
   가져다 쓴다.
 * 전체 적인 CICD 구성에해서 git-action의 역활은
   docker build -> docker images 생성 -> ecr push이다.
-
-
- * [workflows](./workflows)
-     * [Dockerfile](./workflows/Dockerfile)
-     * [prtest.yml](./workflows/prtest.yml)
-     * [push_ecr.yml](./workflows/push_ecr.yml)
-
-.
-
 
