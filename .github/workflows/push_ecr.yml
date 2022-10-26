@@ -3,7 +3,7 @@ name: Push Image to ECR
 on:
   push:
     branches:
-      - master11111111111
+      - master
 
 jobs:
   push-image:
@@ -36,12 +36,12 @@ jobs:
         run: pwd ; ls ;docker build -t ga_codepipeline .
 
       - name: docker login
-        run: aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS --password-stdin 014271515763.dkr.ecr.ap-northeast-2.amazonaws.com/ga_codepipeline
+        run: aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS --password-stdin 01xxxx515763.dkr.ecr.ap-northeast-2.amazonaws.com/ga_codepipeline
 
       - name: tag image
         run: |
-          docker tag ga_codepipeline:latest 014271515763.dkr.ecr.ap-northeast-2.amazonaws.com/ga_codepipeline:latest
-          docker tag ga_codepipeline:latest 014271515763.dkr.ecr.ap-northeast-2.amazonaws.com/ga_codepipeline:${{ steps.vars.outputs.sha_short }}
+          docker tag ga_codepipeline:latest 0xxxxx15763.dkr.ecr.ap-northeast-2.amazonaws.com/ga_codepipeline:latest
+          docker tag ga_codepipeline:latest 0xxxxxx3.dkr.ecr.ap-northeast-2.amazonaws.com/ga_codepipeline:${{ steps.vars.outputs.sha_short }}
 
       - name: push image
-        run: docker push 014271515763.dkr.ecr.ap-northeast-2.amazonaws.com/ga_codepipeline --all-tags
+        run: docker push 0xxxxxxx1x3.dkr.ecr.ap-northeast-2.amazonaws.com/ga_codepipeline --all-tags
