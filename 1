@@ -1,0 +1,47 @@
+merge faild Merge branch 'master' of github.com:kimutae1/git-action
+
+# Conflicts:
+#	55
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch master
+# Your branch and 'origin/master' have diverged,
+# and have 1 and 2 different commits each, respectively.
+#   (use "git pull" to merge the remote branch into yours)
+#
+# All conflicts fixed but you are still merging.
+#
+# Changes to be committed:
+#	modified:   55
+#	new file:   66
+#
+# ------------------------ >8 ------------------------
+# Do not modify or remove the line above.
+# Everything below it will be ignored.
+diff --git a/55 b/55
+index 4a59395..428eb5f 100644
+--- a/55
++++ b/55
+@@ -1 +1,5 @@
+-local 55
+\ No newline at end of file
++<<<<<<< HEAD
++local 55
++=======
++55555
++>>>>>>> d4da74e2e1fbc5484e036cfd1a8b395aa89875db
+diff --git a/66 b/66
+new file mode 100644
+index 0000000..e83d667
+--- /dev/null
++++ b/66
+@@ -0,0 +1 @@
++66666
